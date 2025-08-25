@@ -1,0 +1,14 @@
+
+
+import { connectMongoDB } from "@/lib/mongodb";
+import Blog from "@/models/user";
+import { NextResponse } from "next/server";
+
+export async function POST (request) 
+{   console.log("POST /api/blog called");
+    const{title, slug, blogCateogry, tags, status, description}=await request.json();
+    await connectMongoDB();
+    await Blog.create({title, slug, blogCateogry, tags, status, description});
+    return NextResponse.json({message:"blog has been added "},{status:201});
+    
+}
