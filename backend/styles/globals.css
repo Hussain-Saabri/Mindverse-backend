@@ -4,6 +4,7 @@
 @tailwind utilities;
 
 
+
 * {
     margin: 0;
     padding: 0;
@@ -325,11 +326,11 @@ button {
 
 .asideleft {
     position: fixed;
-    top: 90px;
+    top: 70px;
     left: 0;
     width: 130px;
     height: 100vh;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.377);
     z-index: 9;
     box-shadow: 0 0 10px #c4c4c4;
 }
@@ -419,7 +420,7 @@ button {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    flex-wrap: wrap;
+   gap: 10px;
     padding-top: 1rem;
     padding-bottom: 4rem;
     margin-top: 2rem;
@@ -427,17 +428,27 @@ button {
 
 .four_card {
     position: relative;
-    width: 380px;
+    width: 280px;
     height: 250px;
-    background-image: linear-gradient(to bottom right, #9358e0, #571f9e);
-    box-shadow: 2px 12px 26px 3px rgba(126, 55, 216, .3);
+    background: linear-gradient(145deg, #9358e0, #571f9e);
     color: #fff;
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    border-radius: 50px;
+    border-radius: 30px;
+    font-family: "Poppins", sans-serif;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    overflow: hidden;
+
+    /* new glassy + depth */
+    box-shadow: 
+        0 8px 20px rgba(0,0,0,0.3),
+        inset 0 0 20px rgba(255,255,255,0.1);
 }
+
+
 
 .four_card:nth-child(2) {
     background-image: linear-gradient(to bottom right, #ff9cc3, #fd3484);
@@ -462,7 +473,7 @@ button {
 .four_card span {
     position: absolute;
     bottom: 0;
-    width: 150px;
+    width: 100px;
     text-align: center;
     font-size: 2rem;
     background-color: #5d66bda7;
@@ -1083,27 +1094,21 @@ button {
     height: calc(100vh);
     
 }
-
 .loginfront img {
     border-radius: 50%;
     border-color:gold;
     margin-bottom: 1rem;
     border: 5px solid gray; 
 }
-
-
-
 .loginfront h1 {
     font-size: 2rem;
     text-align: center;
     color: #000;
 }
-
 .loginfront p {
     font-weight: 500;
     color: #555;
 }
-
 .loginfront p a {
     color: rgb(93, 124, 73);
 }
@@ -1136,16 +1141,13 @@ button {
     box-shadow: 0 3px 10px #333;
     transition: 0.2s ease-in-out;
 }
-
 .loginfront button:is(:hover, :active) {
     background-color: rgb(136, 136, 234);
     color: #000;
 }
-
 .loginfront button:active {
     transform: scale(0.9);
 }
-
 .loginpre {
     color: #d3d3d3;
     border-style: dashed;
@@ -1154,17 +1156,10 @@ button {
     border-radius: 10px;
     font-weight: 600;
 }
-
 .loginpre:hover {
     background-color: #fff;
     color: #000;
 }
-
-
-
-
-
-
 /* *************************************************** */
 /*                     Loading Components  */
 /* *************************************************** */

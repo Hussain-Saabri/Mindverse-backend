@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
-import Loading from "@/components/Loading";
+
 import Header from "@/components/Header";
+
 import Aside from "@/components/Aside";
 import { NextAuthProvider } from "./Provider";
 import { useEffect, useState } from "react";
