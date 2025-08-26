@@ -13,7 +13,7 @@ if (status === "authenticated") {
     return <>
         <div className="loginfront flex flex-center flex-col full-w">
             <Image src='/img/coder.png' width={250} height={250} alt="Coder Image" />
-            <h1>Welcome Admin of the sacchibaatein 👋</h1>
+            <h1>Welcome Admin of the Mindverse 👋</h1>
             <p>Visit our main website <a href="" target="_blank" rel="noopener noreferrer">sacchibaatein</a></p>
             <button onClick={""} className='mt-2'>Login with Google</button>
         </div>

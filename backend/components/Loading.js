@@ -30,7 +30,7 @@ export default function Loading() {
           letterSpacing: "1px",
         }}
       >
-        Loading Admin Panel...
+        
       </h1>
     </div>
   );

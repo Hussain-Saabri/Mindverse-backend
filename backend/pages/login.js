@@ -28,7 +28,7 @@ export default function Login() {
   return (
     <div className="loginfront flex flex-center flex-col full-w">
       <Image src="/img/coder.png" width={250} height={250} alt="Coder Image" />
-      <h1>Welcome Admin of the sacchibaatein 👋</h1>
+      <h1>Welcome Admin of the Mindverse 👋</h1>
 
       {status === "authenticated" ? (
         <button onClick={() => signOut("google")} className="mt-2">
@@ -38,9 +38,7 @@ export default function Login() {
       <button onClick={() => signIn("google", { redirect: false })} className="mt-2">
   Login With Google
 </button>
-<button onClick={() => signOut("google")} className="mt-2">
-          Logout
-        </button>
+
       </>
         
 

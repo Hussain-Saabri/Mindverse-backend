@@ -12,10 +12,11 @@
 }
 
 body {
-    background-color: rgb(248, 250, 252);
+    background: linear-gradient(145deg, #f8fafd, #eef2f8); /* cloudish */
     font-family: "Nunito", sans-serif;
     font-weight: 600;
     overflow-x: hidden;
+    margin: 0;
 }
 
 /* ================================================== */
@@ -265,100 +266,163 @@ button {
 
 .header {
     width: 100%;
-    height: 90px;
-    background-color: #fff;
-    padding: 2rem;
+    height: 80px;
+    background: #fff;
+    padding: 1.5rem 2rem;
     position: fixed;
     top: 0;
     z-index: 99;
-    box-shadow: 0 0 10px #c4c4c4;
-}
-
-.logo {
-    position: relative;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #f0f0f0;
 }
 
 .logo h1 {
-    position: relative;
     font-weight: 900;
-    color: #000;
+    color: #5f22db;
+    font-size: 24px;
+    position: relative;
 }
 
 .logo h1::before {
     content: '';
     position: absolute;
-    left: -2px;
-    top: 0;
-    background-color: rgb(242, 52, 52);
-    border-radius: 1px 12px;
-    width: 20px;
-    height: 20px;
+    left: -8px;
+    top: -5px;
+    background: #f23434; /* red accent */
+    border-radius: 4px;
+    width: 18px;
+    height: 18px;
     z-index: -1;
 }
 
 .headerham {
-    width: 40px;
-    height: 40px;
-    background-color: #eee8fa;
+    width: 42px;
+    height: 42px;
+    background: #eee8fa;
     color: #5f22db;
     font-size: 20px;
     border-radius: 50%;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+.headerham:hover {
+    background: #d7c8ff;
 }
 
 .rightnav svg {
     font-size: 22px;
     cursor: pointer;
+    transition: 0.3s;
+}
+.rightnav svg:hover {
+    color: #5f22db;
 }
 
 .profilenav img {
-    width: 50px;
-  height: 50px;
-    cursor: pointer;
-    border-radius: 50px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
     object-fit: cover;
-    margin-top: 5px;
+    cursor: pointer;
+    border: 2px solid #5f22db;
 }
+
+
+/* ********************************************** */
+/* ******************************* Logo section */
+/* ********************************************** */
+.logo-text {
+  font-size: 3.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  background: linear-gradient(90deg, #06b6d4, #9333ea, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  text-align: center;
+}
+
+.logo-text::after {
+  content: "Mindverse"; /* duplicate text for glow */
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  text-align: center;
+  background: none;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0px 0px 15px rgba(147, 51, 234, 0.7),
+               0px 0px 30px rgba(6, 182, 212, 0.7),
+               0px 0px 45px rgba(236, 72, 153, 0.6);
+  z-index: -1;
+}
+
+.subtitle {
+  text-align: center;
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+  color: #d1d5db; /* light gray */
+  font-weight: 500;
+}
+
 
 /* ********************************************** */
 /* ******************************* Aside section */
 /* ********************************************** */
 
+
 .asideleft {
     position: fixed;
-    top: 70px;
+    top: 75px;
     left: 0;
-    width: 130px;
+    width: 130px; /* thoda wide for clarity */
     height: 100vh;
-    background-color: rgba(255, 255, 255, 0.377);
+    background: linear-gradient(180deg, #5f22db, #9b64e3); /* purple gradient */
+    color: #fff;
     z-index: 9;
-    box-shadow: 0 0 10px #c4c4c4;
+    box-shadow: 2px 0 20px rgba(0,0,0,0.15);
+    border-top-right-radius: 20px;
+    backdrop-filter: blur(10px); /* glassmorphism feel */
 }
 
 .asideleft ul li {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1.5rem 1rem;
-
+    padding: 1.2rem 1rem;
+    transition: all 0.3s ease;
 }
 
 .asideleft ul li.navactive {
-    
-    color: black;
+    background: rgba(255, 255, 255, 0.15);
+    color: #FFD700;
+    font-weight: bold;
+    border-radius: 12px;
+    box-shadow: inset 0 0 10px rgba(255,255,255,0.2);
 }
 
 .asideleft ul li svg {
     font-size: 22px;
+    margin-bottom: 6px;
 }
 
 .asideleft ul li span {
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .asideleft ul li:hover {
-    background-color: #9b64e3;
-    color: #fff;
+    background: rgba(255,255,255,0.15);
+    color: #FFD700;
+    border-radius: 12px;
+   
+    box-shadow: inset 0 0 10px rgba(255,255,255,0.2);
 }
 
 /* ********************************************** */
@@ -652,11 +716,15 @@ button {
 .blogstable input {
     width: 450px;
     padding: 10px;
-    border: 1px solid #999;
-    font-size: 22px;
-    outline-color: #571f9e;
-    box-shadow: 0 0 5px #999;
+    font-size: 18px;
+    border: 1px solid #333;
     border-radius: 10px;
+    outline: none;
+    background: #1c1c28;
+    color: #fff;
+    box-shadow: inset 2px 2px 5px rgba(0,0,0,0.5),
+                inset -2px -2px 5px rgba(255,255,255,0.05);
+    transition: all 0.3s ease;
 }
 
 .blogstable input:focus {
@@ -666,16 +734,20 @@ button {
 
 .blogstable table {
     width: 100%;
-    color: #1b3155;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    color: #e5e5e5;
     text-align: left;
-    
 }
 
 .blogstable table thead th {
-    color: #7e37d8;
-    background-color: #cfe2ff;
-    padding: 0.75rem;
-    font-size: 1.5rem;
+    color: #fff;
+    background: linear-gradient(135deg, #00ffcc, #0066ff);
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-align: center;
+    border-radius: 10px;
 }
 
 .blogstable table tbody td {
@@ -692,41 +764,40 @@ button {
    
 }
 
-.blogstable table tbody {
-    border: 1px solid #000;
-    background-color: #f0f0f0;
-}
-
-.blogstable table button {
+.blogstable table tbody tr:hover td {
+    background: rgba(0, 255, 204, 0.1);
     
-   
-    gap: 2px;
-    padding: 10px 10px;
-    border-radius: 10px;
-    font-weight: 700;
-    border: 1px solid #555;
-    color: #444;
     transition: 0.3s ease;
 }
 
+.blogstable table button {
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
 .edit-btn {
-  background-color: rgb(23, 193, 23);
-  border: 1px solid green;
-  color: white;
+    background: linear-gradient(135deg, #00ff88, #00cc66);
+    color: #fff;
+    box-shadow: 0 0 8px rgba(0,255,136,0.6);
 }
-
 .edit-btn:hover {
-  background-color: rgb(34, 145, 34);
+    background: linear-gradient(135deg, #00cc66, #00994d);
+    box-shadow: 0 0 15px rgba(0,255,136,0.9);
 }
 
+/* Delete Button */
 .delete-btn {
-  background-color: rgb(255, 85, 85);
-  border: 1px solid rgb(255, 85, 85);
-  color: white;
+    background: linear-gradient(135deg, #ff4b5c, #cc0000);
+    color: #fff;
+    box-shadow: 0 0 8px rgba(255,75,92,0.6);
 }
-
 .delete-btn:hover {
-  background-color: rgb(221, 18, 18);
+    background: linear-gradient(135deg, #cc0000, #990000);
+    box-shadow: 0 0 15px rgba(255,75,92,0.9);
 }
 
 
