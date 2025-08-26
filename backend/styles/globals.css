@@ -264,73 +264,110 @@ button {
 /* ******************************* Header section */
 /* ********************************************** */
 
+/* ********************************************** */
+/* ******************************* Header section */
+/* ********************************************** */
+
+.rounded-avatar {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Header container */
 .header {
-    width: 100%;
-    height: 80px;
-    background: #fff;
-    padding: 1.5rem 2rem;
-    position: fixed;
-    top: 0;
-    z-index: 99;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 2px solid #f0f0f0;
+  width: 100%;
+  height: 60px;
+  background: #ffffff;
+  padding: 0 2rem;
+  position: fixed;
+  top: 0;
+  z-index: 99;
+ 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
 }
 
+/* Logo styling */
 .logo h1 {
-    font-weight: 900;
-    color: #5f22db;
-    font-size: 24px;
-    position: relative;
+  font-weight: 900;
+  font-size: 22px;
+  position: relative;
+  display: inline-block;
+  color: #2d2d2d;
 }
-
+.logo h1 span {
+  color: #5f22db;
+}
 .logo h1::before {
-    content: '';
-    position: absolute;
-    left: -8px;
-    top: -5px;
-    background: #f23434; /* red accent */
-    border-radius: 4px;
-    width: 18px;
-    height: 18px;
-    z-index: -1;
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: -6px;
+  background: #f23434;
+  border-radius: 4px;
+  width: 18px;
+  height: 18px;
+  z-index: -1;
 }
 
+/* Hamburger button */
 .headerham {
-    width: 42px;
-    height: 42px;
-    background: #eee8fa;
-    color: #5f22db;
-    font-size: 20px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: 0.3s;
+  width: 40px;
+  height: 40px;
+  background: #eee8fa;
+  color: #5f22db;
+  font-size: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
 }
 .headerham:hover {
-    background: #d7c8ff;
+  background: #d7c8ff;
+  transform: scale(1.05);
 }
 
-.rightnav svg {
-    font-size: 22px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-.rightnav svg:hover {
-    color: #5f22db;
+/* Right nav */
+.rightnav {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
 }
 
+/* Profile avatar */
 .profilenav img {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    object-fit: cover;
-    cursor: pointer;
-    border: 2px solid #5f22db;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid #5f22db;
+  box-shadow: 0 2px 6px rgba(95,34,219,0.2);
+  transition: 0.3s;
+}
+.profilenav img:hover {
+  transform: scale(1.05);
+}
+
+/* Login button */
+.loginbtn {
+  padding: 6px 16px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #7e22ce, #9333ea);
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(126,34,206,0.3);
+  transition: all 0.3s ease;
+}
+.loginbtn:hover {
+  background: linear-gradient(90deg, #6d28d9, #7e22ce);
+  transform: translateY(-1px);
 }
 
 
@@ -380,7 +417,7 @@ button {
 
 .asideleft {
     position: fixed;
-    top: 75px;
+    top: 65px;
     left: 0;
     width: 130px; /* thoda wide for clarity */
     height: 100vh;

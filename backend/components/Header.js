@@ -1,277 +1,185 @@
+"use client";
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
+import Container from "@mui/material/Container";
+import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
+import MenuItem from "@mui/material/MenuItem";
+import MenuIcon from "@mui/icons-material/Menu";
+import { useSession, signIn, signOut } from "next-auth/react";
 
-import { RiBarChartHorizontalLine } from "react-icons/ri";
-import { GoScreenFull } from "react-icons/go";
-import { BiExitFullscreen } from "react-icons/bi";
-import { useState } from "react";
-import { useSession } from "next-auth/react";
-import { useEffect } from "react";
-import { signOut,signIn } from "next-auth/react";
-import Image from "next/image";
-import Loading from "./Loading";
-import toast from "react-hot-toast";
-import { Toaster } from "react-hot-toast";
+const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const defaultAvatar = "/img/coder.png";
 
-export default function Header()
-{ 
-  const imageUrl="/img/coder.png";
-const{data:session,status}=useSession();
-const[showLoader,setShowLoader]=useState(false);
-const [isFullscreen, setIsFullscreen] = useState(false);
-useEffect(() => {
-  if (typeof window !== "undefined") {
-    setIsFullscreen(!!document.fullscreenElement);
-  }
-}, []);
-useEffect(() => {
-  if (status === 'authenticated') {
-    console.log("Name:", session.user.name);
-    console.log("Email:", session.user.email);
-    console.log("Image:",session.user.image);
-   
-  }
-}, [status, session]);
+function Header({ onToggleSidebar }) {
+  const { data: session } = useSession();
+  const isLoggedIn = !!session;
 
-const handleLogout=()=>{
-  setShowLoader(true);
-  toast.success('Logging Out');
-  setTimeout(()=>{
-      signOut({ callbackUrl: "/login" })
-  },1000);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-};
+  const handleOpenUserMenu = (event) => setAnchorElUser(event.currentTarget);
+  const handleCloseUserMenu = () => setAnchorElUser(null);
+  const handleLogout = () => {
+    signOut();
+    handleCloseUserMenu();
+  };
 
-{/*
-  
-  const handleLogIn=()=>{
-   toast.success('Signing In');
-   signIn("google",{ callbackUrl: "/" });
-   
-}*/}
-    return <>
-    <>
-    
+  return (
+  <AppBar
+  position="fixed"
+  elevation={0}
+  sx={{
+    background: "rgba(255, 255, 255, 0.7)",
+    backdropFilter: "blur(14px)",
+    WebkitBackdropFilter: "blur(14px)",
+    borderBottom: "2px solid rgba(95,34,219,0.15)",
+    boxShadow: "0 8px 25px rgba(95,34,219,0.2)",
+    zIndex: 2000,
+    height: "70px",
+    display: "flex",
+    justifyContent: "center",
+  }}
+>
+  <Container maxWidth="xl">
+    <Toolbar disableGutters sx={{ justifyContent: "space-between" }}>
+      {/* Left Side → Menu + Logo */}
+      <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+        {/* Hamburger */}
+        <IconButton
+          onClick={onToggleSidebar}
+          sx={{
+            width: 44,
+            height: 44,
+            background: "linear-gradient(135deg, #5f22db, #9b64e3)", // sidebar gradient
+            color: "#fff",
+            borderRadius: "14px",
+            mr: 1,
+            "&:hover": {
+              transform: "scale(1.08) rotate(-2deg)",
+              boxShadow: "0 6px 15px rgba(95,34,219,0.4)",
+            },
+            transition: "0.3s",
+          }}
+        >
+          <MenuIcon />
+        </IconButton>
 
-    <header className="header flex flex-sb">
-      
+        {/* Logo */}
+        <Typography
+          variant="h6"
+          component="a"
+          href="/"
+          sx={{
+            fontWeight: 900,
+            fontSize: "1.6rem",
+            background: "linear-gradient(90deg,#5f22db,#9b64e3)", // same gradient as sidebar
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            textDecoration: "none",
+            position: "relative",
+            "&::after": {
+              content: '""',
+              position: "absolute",
+              left: 0,
+              bottom: -6,
+              width: "100%",
+              height: "3px",
+              borderRadius: "4px",
+              background: "linear-gradient(90deg,#f23434,#9333ea)",
+              transform: "scaleX(0)",
+              transformOrigin: "right",
+              transition: "transform 0.4s ease",
+            },
+            "&:hover::after": {
+              transform: "scaleX(1)",
+              transformOrigin: "left",
+            },
+          }}
+        >
+          Mindverse
+        </Typography>
+      </Box>
 
-        <div className="logo flex gap-2 ">
-                <h1>ADMIN</h1>
-        
-        
-      { /* {status==='authenticated'?
-        (<button className='bg-gray-500 text-white p-2 rounded'>User has Logged in</button>)
-        :(<button>Signin</button>)}*/}
-        
-                <div className="headerham flex flex-center">
-                    <RiBarChartHorizontalLine />
-                </div>
-            </div>
-         <div className="rightnav flex gap-2">
-                <div >
-                    {isFullscreen ? <BiExitFullscreen /> : <GoScreenFull />}
-                </div>
+      {/* Right Side */}
+      <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+        {isLoggedIn ? (
+          <>
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Box
+                  component="img"
+                  src={session.user?.image || defaultAvatar}
+                  alt="user avatar"
+                  sx={{
+                    width: 44,
+                    height: 44,
+                    borderRadius: "50%",
+                    border: "3px solid transparent",
+                    background:
+                      "linear-gradient(white, white) padding-box, linear-gradient(135deg,#5f22db,#9b64e3) border-box",
+                    boxShadow: "0 4px 12px rgba(95,34,219,0.25)",
+                    cursor: "pointer",
+                    transition: "0.3s",
+                    "&:hover": {
+                      transform: "scale(1.1)",
+                      boxShadow: "0 6px 20px rgba(95,34,219,0.35)",
+                    },
+                  }}
+                />
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: "45px" }}
+              anchorEl={anchorElUser}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {settings.map((setting) => (
+                <MenuItem
+                  key={setting}
+                  onClick={
+                    setting === "Logout" ? handleLogout : handleCloseUserMenu
+                  }
+                >
+                  <Typography textAlign="center">{setting}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </>
+        ) : (
+          <Button
+            variant="contained"
+            onClick={() => signIn("google", { redirect: false })}
+            sx={{
+              textTransform: "none",
+              borderRadius: "12px",
+              px: 3,
+              py: 1.2,
+              fontSize: "0.95rem",
+              fontWeight: 600,
+              background: "linear-gradient(90deg,#5f22db,#9b64e3)", // same as sidebar
+              boxShadow: "0 4px 15px rgba(95,34,219,0.35)",
+              "&:hover": {
+                background: "linear-gradient(90deg,#4c1dbb,#7a3edb)",
+                transform: "translateY(-2px)",
+                boxShadow: "0 6px 20px rgba(95,34,219,0.45)",
+              },
+              transition: "all 0.3s ease",
+            }}
+          >
+            🚀 Login with Google
+          </Button>
+        )}
+      </Box>
+    </Toolbar>
+  </Container>
+</AppBar>
 
-                {/* <div className="notification">
-                    <img src="/img/notification.png" alt="notification" />
-                </div> */}
-                {(status==='authenticated')?(<button onClick={handleLogout} className="header_logout">Logout</button>):
-                <>
-               {/* <button onClick={() => signIn("google",{ callbackUrl: "/" })} className="header_logout">Login</button>*/}
-              
-                </>
-                
-                
-                
-                }
-                
-    {/* profile dropdown menu             */}
-<div className="profilenav">
-
-          
-               {session?.user?.image ? (
-            <Image
-                src={session.user.image}
-                width={40}
-                height={40}
-                alt="user"
-                className="rounded-full"
-              />
-            ) : (
-              <img src={imageUrl} alt="default user" title="Hussain" width={40} height={40} />
-            )}
-                
-</div>
-
-            </div>
-    </header>
-      
-    
-    </>
-    </>
+  );
 }
-
-
-
-
-
-
-
-// import * as React from 'react';
-// import AppBar from '@mui/material/AppBar';
-// import Box from '@mui/material/Box';
-// import Toolbar from '@mui/material/Toolbar';
-// import IconButton from '@mui/material/IconButton';
-// import Typography from '@mui/material/Typography';
-// import Menu from '@mui/material/Menu';
-// import MenuIcon from '@mui/icons-material/Menu';
-// import Container from '@mui/material/Container';
-// import Avatar from '@mui/material/Avatar';
-// import Button from '@mui/material/Button';
-// import Tooltip from '@mui/material/Tooltip';
-// import MenuItem from '@mui/material/MenuItem';
-// import AdbIcon from '@mui/icons-material/Adb';
-
-// const pages = ['Products', 'Pricing', 'Blog'];
-// const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-
-// function ResponsiveAppBar() {
-//   const [anchorElNav, setAnchorElNav] = React.useState(null);
-//   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
-//   const handleOpenNavMenu = (event) => {
-//     setAnchorElNav(event.currentTarget);
-//   };
-//   const handleOpenUserMenu = (event) => {
-//     setAnchorElUser(event.currentTarget);
-//   };
-
-//   const handleCloseNavMenu = () => {
-//     setAnchorElNav(null);
-//   };
-
-//   const handleCloseUserMenu = () => {
-//     setAnchorElUser(null);
-//   };
-
-//   return (
-//     <AppBar position="fixed">
-//       <Container maxWidth="xl">
-//         <Toolbar disableGutters>
-//           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-//           <Typography
-//             variant="h6"
-//             noWrap
-//             component="a"
-//             href="#app-bar-with-responsive-menu"
-//             sx={{
-//               mr: 2,
-//               display: { xs: 'none', md: 'flex' },
-//               fontFamily: 'monospace',
-//               fontWeight: 700,
-//               letterSpacing: '.3rem',
-//               color: 'inherit',
-//               textDecoration: 'none',
-//             }}
-//           >
-//             LOGO
-//           </Typography>
-
-//           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-//             <IconButton
-//               size="large"
-//               aria-label="account of current user"
-//               aria-controls="menu-appbar"
-//               aria-haspopup="true"
-//               onClick={handleOpenNavMenu}
-//               color="inherit"
-//             >
-//               <MenuIcon />
-//             </IconButton>
-//             <Menu
-//               id="menu-appbar"
-//               anchorEl={anchorElNav}
-//               anchorOrigin={{
-//                 vertical: 'bottom',
-//                 horizontal: 'left',
-//               }}
-//               keepMounted
-//               transformOrigin={{
-//                 vertical: 'top',
-//                 horizontal: 'left',
-//               }}
-//               open={Boolean(anchorElNav)}
-//               onClose={handleCloseNavMenu}
-//               sx={{ display: { xs: 'block', md: 'none' } }}
-//             >
-//               {pages.map((page) => (
-//                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-//                   <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
-//                 </MenuItem>
-//               ))}
-//             </Menu>
-//           </Box>
-//           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-//           <Typography
-//             variant="h5"
-//             noWrap
-//             component="a"
-//             href="#app-bar-with-responsive-menu"
-//             sx={{
-//               mr: 2,
-//               display: { xs: 'flex', md: 'none' },
-//               flexGrow: 1,
-//               fontFamily: 'monospace',
-//               fontWeight: 700,
-//               letterSpacing: '.3rem',
-//               color: 'inherit',
-//               textDecoration: 'none',
-//             }}
-//           >
-//             LOGO
-//           </Typography>
-//           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-//             {pages.map((page) => (
-//               <Button
-//                 key={page}
-//                 onClick={handleCloseNavMenu}
-//                 sx={{ my: 2, color: 'white', display: 'block' }}
-//               >
-//                 {page}
-//               </Button>
-//             ))}
-//           </Box>
-//           <Box sx={{ flexGrow: 0 }}>
-//             <Tooltip title="Open settings">
-//               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-//                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-//               </IconButton>
-//             </Tooltip>
-//             <Menu
-//               sx={{ mt: '45px' }}
-//               id="menu-appbar"
-//               anchorEl={anchorElUser}
-//               anchorOrigin={{
-//                 vertical: 'top',
-//                 horizontal: 'right',
-//               }}
-//               keepMounted
-//               transformOrigin={{
-//                 vertical: 'top',
-//                 horizontal: 'right',
-//               }}
-//               open={Boolean(anchorElUser)}
-//               onClose={handleCloseUserMenu}
-//             >
-//               {settings.map((setting) => (
-//                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-//                   <Typography sx={{ textAlign: 'center' }}>{setting}</Typography>
-//                 </MenuItem>
-//               ))}
-//             </Menu>
-//           </Box>
-//         </Toolbar>
-//       </Container>
-//     </AppBar>
-//   );
-// }
-// export default ResponsiveAppBar;
+export default Header;
