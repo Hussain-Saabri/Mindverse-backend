@@ -10,7 +10,7 @@ import axios from "axios";
 import Loading from "@/components/Loading";
 import ReactPaginate from "react-paginate";
 
-export default function blogs() {
+export default function Blogs() {
   const [sizeOfBlogs, setSizeOfBlogs] = useState(0);
   const { data: session, status } = useSession();
   const [publishBlogs, setpublishBlogs] = useState([]);
