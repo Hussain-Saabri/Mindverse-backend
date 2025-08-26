@@ -3,7 +3,7 @@ import "@/styles/globals.css";
 import Header from "@/components/Header";
 
 import Aside from "@/components/Aside";
-import { NextAuthProvider } from "./Provider";
+import NextAuthProvider from "./Provider";
 import { useEffect, useState } from "react";
 import { Toaster } from "react-hot-toast";
 import Aos from "@/components/Aos";
