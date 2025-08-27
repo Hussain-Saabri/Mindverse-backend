@@ -1,26 +1,44 @@
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Loading from "@/components/Loading";
 
 export default function UsersTable() {
   const { status } = useSession();
   const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchUsers = async () => {
+      const startTime = Date.now(); // track when loading starts
       try {
         const res = await axios.get("/api/getuser");
         setUsers(res.data.users || []);
-        console.log('users',users);
       } catch (error) {
         console.error("Failed to fetch users", error);
+      } finally {
+        // ensure at least 2s loading
+        const elapsed = Date.now() - startTime;
+        const remaining = 2000 - elapsed; 
+        setTimeout(() => setLoading(false), remaining > 0 ? remaining : 0);
       }
     };
 
     if (status === "authenticated") {
       fetchUsers();
+    } else if (status === "unauthenticated") {
+      setLoading(false); // stop loading if not logged in
     }
   }, [status]);
+
+  // Show loader strictly for 2 seconds
+  if (status === "loading" || loading) {
+    return (
+      <div >
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <div className="blogpage">
@@ -32,14 +50,14 @@ export default function UsersTable() {
           <h3>ADMIN PANEL</h3>
         </div>
         <div className="breadcrumb">
-           <span>/</span>
+          <span>/</span>
           <span>Users</span>
         </div>
       </div>
 
       <div className="blogstable">
         {users.length > 0 ? (
-          <table data-aos="fade-up">
+          <table data-aos="fade-right">
             <thead>
               <tr>
                 <th>Sr.No</th>
@@ -67,17 +85,15 @@ export default function UsersTable() {
                     )}
                   </td>
                   <td>
- 
-
                     {new Date(user.createdAt).toLocaleString("en-IN", {
-                          timeZone: "Asia/Kolkata",
-                          day: "2-digit",
-                          month: "long",
-                          year: "2-digit",
-                          hour: "numeric",
-                          minute: "2-digit",
-                          hour12: true,
-                        })}
+                      timeZone: "Asia/Kolkata",
+                      day: "2-digit",
+                      month: "long",
+                      year: "2-digit",
+                      hour: "numeric",
+                      minute: "2-digit",
+                      hour12: true,
+                    })}
                   </td>
                 </tr>
               ))}

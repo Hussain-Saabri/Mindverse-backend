@@ -2,12 +2,13 @@
 import Image from "next/image";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Loading from "@/components/Loading";
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 import { useRouter } from "next/router";
 
 export default function Login() {
   console.log("Inside the login function");
   const { data: session, status } = useSession();
+  const [forceLoading, setForceLoading] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
@@ -16,19 +17,42 @@ export default function Login() {
       router.push("/");
     }
   }, [status, router]);
+
+
+
+  useEffect(() => {
+    // always show loading for at least 2 seconds
+    const timer = setTimeout(() => {
+      setForceLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
 //whenever we refresh for some time status will be loading 
-  if (status === "loading") {
+  if (status === "loading" || forceLoading) {
     return (
-      <div className="loginfront flex flex-center flex-col full-w">
+      <div>
         <Loading />
       </div>
     );
   }
-
-  return (
+  if(status === "unauthenticated")
+  {
+return (
     <div className="loginfront flex flex-center flex-col full-w">
       <Image src="/img/coder.png" width={250} height={250} alt="Coder Image" />
-      <h1>Welcome Admin of the sacchibaatein 👋</h1>
+   <h1>
+  Welcome Admin of{" "}
+  <span className="mindverse-logo">
+    <span className="mind">Mind</span>
+    <span className="dot">●</span>
+    <span className="verse">Verse</span>
+  </span>{" "}
+  
+</h1>
+
+
+
 
       {status === "authenticated" ? (
         <button onClick={() => signOut("google")} className="mt-2">
@@ -46,4 +70,8 @@ export default function Login() {
       )}
     </div>
   );
+
+
+  }
+  
 }
