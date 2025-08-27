@@ -31,18 +31,19 @@ export default function App({ Component, pageProps }) {
   // 🚫 Block Mobile Users
 if (isMobile) {
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100 text-center p-6">
-      <div className="max-w-md">
-        <h1 className="text-2xl font-bold text-red-600 mb-4">
-          🚫 This website is only available on desktop
+    <div className="flex items-center justify-center h-screen bg-gray-50">
+      <div className="bg-white border border-gray-200 rounded-xl p-6 max-w-sm text-center shadow-md">
+        <h1 className="text-xl font-semibold text-gray-800 mb-3">
+          🚫 Desktop Only
         </h1>
-        <p className="text-gray-700">
-          Please open this site on a desktop browser.
+        <p className="text-gray-600 text-sm">
+          This website is available only on desktop browsers.
         </p>
       </div>
     </div>
   );
 }
+
 
 
   // ✅ Normal Desktop Render

@@ -19,10 +19,7 @@ body {
     margin: 0;
 }
 /* globals.css */
-html, body {
-  min-width: 1024px;  /* force desktop layout */
-  overflow-x: auto;   /* allow scroll on small screen */
-}
+
 
 /* ================================================== */
 
@@ -459,7 +456,7 @@ button {
   background: rgba(255, 255, 255, 0.15);
   color: #FFD700;
   font-weight: bold;
-  box-shadow: inset 0 0 10px rgba(255,255,255,0.2);
+  box-shadow: inset 0 0 4px rgba(255,255,255,0.2);
 }
 
 
