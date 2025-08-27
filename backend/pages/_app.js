@@ -36,7 +36,7 @@ if (isMobile) {
         🚫 This website is only available on desktop
       </h1>
       <p className="mt-4 text-gray-700">
-        Please open this site on a desktop browser.
+        Please open this site on a desktop browser.Changeed
       </p>
     </div>
   );
