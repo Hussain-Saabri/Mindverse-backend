@@ -2,12 +2,13 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Loading from "@/components/Loading";
-
+import { useRouter } from "next/router";
+import { user } from "@heroui/react";
 export default function UsersTable() {
   const { status } = useSession();
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
-
+const router=useRouter();
   useEffect(() => {
     const fetchUsers = async () => {
       const startTime = Date.now(); // track when loading starts
@@ -30,7 +31,9 @@ export default function UsersTable() {
       setLoading(false); // stop loading if not logged in
     }
   }, [status]);
-
+if (status === "unauthenticated") {
+   router.push("/login");
+  }
   // Show loader strictly for 2 seconds
   if (status === "loading" || loading) {
     return (

@@ -179,7 +179,7 @@ function Header({ onToggleSidebar }) {
               transition: "all 0.3s ease",
             }}
           >
-            🚀 Login with Google
+            Login with Google
           </Button>
         )}
       </Box>
