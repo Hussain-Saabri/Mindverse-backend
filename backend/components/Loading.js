@@ -9,7 +9,8 @@ export default function Loading() {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        background: "#f9fafb", // dashboard light background
+        
+        marginRight:"150px",
       }}
     >
       <ScaleLoader

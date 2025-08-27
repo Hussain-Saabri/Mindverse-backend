@@ -416,51 +416,47 @@ button {
 
 
 .asideleft {
-    position: fixed;
-    top: 65px;
-    left: 0;
-    width: 130px; /* thoda wide for clarity */
-    height: 100vh;
-    background: linear-gradient(180deg, #5f22db, #9b64e3); /* purple gradient */
-    color: #fff;
-    z-index: 9;
-    box-shadow: 2px 0 20px rgba(0,0,0,0.15);
-    border-top-right-radius: 20px;
-    backdrop-filter: blur(10px); /* glassmorphism feel */
+  position: fixed;
+  top: 65px;
+  left: 0;
+  width: 130px;
+  height: 100vh;
+  background: linear-gradient(180deg, #5f22db, #9b64e3); /* purple gradient */
+  color: #fff;
+  z-index: 9;
+  box-shadow: 2px 0 20px rgba(0,0,0,0.15);
+  backdrop-filter: blur(10px); /* glass effect */
+  transition: all 0.3s ease;
 }
 
 .asideleft ul li {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1.2rem 1rem;
-    transition: all 0.3s ease;
-}
-
-.asideleft ul li.navactive {
-    background: rgba(255, 255, 255, 0.15);
-    color: #FFD700;
-    font-weight: bold;
-    border-radius: 12px;
-    box-shadow: inset 0 0 10px rgba(255,255,255,0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.2rem 1rem;
+  transition: all 0.3s ease;
+  border-radius: 12px;
+  cursor: pointer;
 }
 
 .asideleft ul li svg {
-    font-size: 22px;
-    margin-bottom: 6px;
+  font-size: 22px;
+  margin-bottom: 6px;
 }
 
 .asideleft ul li span {
-    font-size: 16px;
+  font-size: 16px;
 }
 
-.asideleft ul li:hover {
-    background: rgba(255,255,255,0.15);
-    color: #FFD700;
-    border-radius: 12px;
-   
-    box-shadow: inset 0 0 10px rgba(255,255,255,0.2);
+/* 🟡 Hover + Active common styling */
+.asideleft ul li:hover,
+.asideleft ul li.navactive {
+  background: rgba(255, 255, 255, 0.15);
+  color: #FFD700;
+  font-weight: bold;
+  box-shadow: inset 0 0 10px rgba(255,255,255,0.2);
 }
+
 
 /* ********************************************** */
 /* ******************************* Dashboard Page */
@@ -472,7 +468,7 @@ button {
     margin: auto;
     height: 100%;
     margin-top: 120px;
-    margin-left: 150px;
+   
     padding: 2rem;
     z-index: 5;
 }
@@ -740,7 +736,7 @@ button {
     margin: auto;
     height: 100%;
     margin-top: 100px;
-    margin-left: 150px;
+   
     padding: 2rem;
 }
 
@@ -891,7 +887,7 @@ button {
     margin: auto;
     height: 100%;
     margin-top: 120px;
-    margin-left: 150px;
+   
     padding: 2rem;
 }
 

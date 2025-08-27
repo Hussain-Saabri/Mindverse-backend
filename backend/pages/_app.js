@@ -9,6 +9,10 @@ import { Toaster } from "react-hot-toast";
 import Aos from "@/components/Aos";
 export default function App({ Component, pageProps }) {
   const [hasMounted, setHasMounted] = useState(false);
+  const [closedSidebar, setClosedSidebar] = useState(false);
+  const toggleSidebar = () => {
+    setClosedSidebar(prev => !prev);
+  };
 
   useEffect(() => {
     setHasMounted(true);
@@ -29,15 +33,21 @@ export default function App({ Component, pageProps }) {
           },
         }}
       />
-      <Header />
-      <Aside />
-      <main>
-        <Aos>
+      <Header onToggleSidebar={toggleSidebar} />
+     {!closedSidebar && <Aside />}
+     <main
+  style={{
+    marginLeft: closedSidebar ? "55px" : "120px",
+     
 
-          <Component {...pageProps} />
-      
-        </Aos>
-        </main>
+    transition: "margin-left 0.9s ease", // smooth shift
+    transition: "margin-right 0.9s ease", // smooth shift
+  }}
+>
+  <Aos>
+    <Component {...pageProps} />
+  </Aos>
+</main>
         
     </NextAuthProvider>
   );

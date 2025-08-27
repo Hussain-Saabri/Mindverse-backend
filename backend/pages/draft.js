@@ -7,7 +7,7 @@ import Link from "next/link";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete, MdDrafts } from "react-icons/md";
 import axios from "axios";
-import { ColorRing,Vortex } from "react-loader-spinner";
+
 import ReactPaginate from "react-paginate";
 
 

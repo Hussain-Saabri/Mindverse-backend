@@ -12,6 +12,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useSession, signIn, signOut } from "next-auth/react";
+import { useState } from "react";
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 const defaultAvatar = "/img/coder.png";
@@ -19,11 +20,17 @@ const defaultAvatar = "/img/coder.png";
 function Header({ onToggleSidebar }) {
   const { data: session } = useSession();
   const isLoggedIn = !!session;
+  
 
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenUserMenu = (event) => setAnchorElUser(event.currentTarget);
   const handleCloseUserMenu = () => setAnchorElUser(null);
+   const handleToggle = () => {
+    console.log("clicked on menu");
+   onToggleSidebar();
+    
+  };
   const handleLogout = () => {
     signOut();
     handleCloseUserMenu();
@@ -51,7 +58,7 @@ function Header({ onToggleSidebar }) {
       <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
         {/* Hamburger */}
         <IconButton
-          onClick={onToggleSidebar}
+          onClick={handleToggle}
           sx={{
             width: 44,
             height: 44,
