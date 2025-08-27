@@ -1,5 +1,4 @@
 import "@/styles/globals.css";
-
 import Header from "@/components/Header";
 import Aside from "@/components/Aside";
 import NextAuthProvider from "./Provider";
@@ -29,20 +28,19 @@ export default function App({ Component, pageProps }) {
   if (!hasMounted) return null;
 
   // 🚫 Block Mobile Users
-if (isMobile) {
-  return (
-   <div className="mobile-block">
-  <div className="mobile-card">
-    <h1>🚫 Desktop Only</h1>
-    <p>This website is available only on desktop browsers.</p>
-    <p className="note">👉 If you're on mobile, click Desktop site from your browser menu.</p>
-  </div>
-</div>
-
-  );
-}
-
-
+  if (isMobile) {
+    return (
+      <div className="mobile-block">
+        <div className="mobile-card">
+          <h1>🚫 Desktop Only</h1>
+          <p>This website is available only on desktop browsers.</p>
+          <p className="note">
+            👉 If you&apos;re on mobile, click &quot;Desktop site&quot; from your browser menu.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   // ✅ Normal Desktop Render
   return (
