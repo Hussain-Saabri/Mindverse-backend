@@ -12,8 +12,9 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useSession, signIn, signOut } from "next-auth/react";
-import { useState } from "react";
+
 import Logo from "./Logo";
+import Link from "next/link";
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 const defaultAvatar = "/img/coder.png";
 
@@ -84,7 +85,9 @@ function Header({ onToggleSidebar }) {
       transform: "translateX(-50%)",
     }}
   >
+    <Link href="/">
     <Logo />
+    </Link>
   </Box>
 
   {/* Right Side → Login / Avatar */}
