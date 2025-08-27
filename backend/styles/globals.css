@@ -19,6 +19,39 @@ body {
     margin: 0;
 }
 /* globals.css */
+.mobile-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;   /* poora screen cover karega */
+  width: 100%;
+  background-color: #f9fafb; /* light gray */
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.mobile-card {
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.mobile-card h1 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937; /* gray-800 */
+  margin-bottom: 12px;
+}
+
+.mobile-card p {
+  font-size: 0.9rem;
+  color: #4b5563; /* gray-600 */
+}
 
 
 /* ================================================== */

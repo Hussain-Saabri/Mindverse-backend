@@ -31,14 +31,10 @@ export default function App({ Component, pageProps }) {
   // 🚫 Block Mobile Users
 if (isMobile) {
   return (
-    <div className="flex items-center justify-center min-h-screen w-full bg-gray-50 px-4">
-      <div className="bg-white border border-gray-200 rounded-xl p-6 w-full max-w-sm text-center shadow-md">
-        <h1 className="text-xl font-semibold text-gray-800 mb-3">
-          🚫 Desktop Only
-        </h1>
-        <p className="text-gray-600 text-sm">
-          This website is available only on desktop browsers.
-        </p>
+    <div className="mobile-block">
+      <div className="mobile-card">
+        <h1>🚫 Desktop Only</h1>
+        <p>This website is available only on desktop browsers.</p>
       </div>
     </div>
   );
