@@ -4,6 +4,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import Loading from "@/components/Loading";
 import { useEffect,useState } from "react";
 import { useRouter } from "next/router";
+import Logo from "@/components/Logo";
 
 export default function Login() {
   console.log("Inside the login function");
@@ -42,14 +43,10 @@ return (
     <div className="loginfront flex flex-center flex-col full-w">
       <Image src="/img/coder.png" width={250} height={250} alt="Coder Image" />
    <h1>
-  Welcome Admin of{" "}
-  <span className="mindverse-logo">
-    <span className="mind">Mind</span>
-    <span className="dot">●</span>
-    <span className="verse">Verse</span>
-  </span>{" "}
+  Welcome Admin of
   
 </h1>
+<Logo/>
 
 
 

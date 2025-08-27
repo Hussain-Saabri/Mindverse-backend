@@ -2,7 +2,7 @@
 import { Sparkles } from "lucide-react";
 
 
-export default function Logo() {
+export default function Logo({ className = "" }) {
   return (
     <div className="logoContainer">
       <Sparkles className="icon" />

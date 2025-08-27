@@ -61,6 +61,31 @@ body {
 }
 
  /* Logo Design */
+
+
+/* components/Logo.module.css */
+
+.logoContainer {
+  display: flex;
+   /* full screen height */
+  gap: 0.5rem;         /* spacing between icon and text */
+}
+
+.icon {
+  width: 3rem;         /* 32px */
+  height: 4rem;
+  color: #9333ea;      /* purple tone */
+}
+
+.logoText {
+  font-size: 3rem;     /* like text-2xl */
+  font-weight: 1000;    /* extra bold */
+  background: linear-gradient(to right, #facc15, #a855f7, #4f46e5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
 .mindverse-logo {
   display: inline-flex;
   align-items: center;
