@@ -32,12 +32,14 @@ export default function App({ Component, pageProps }) {
 if (isMobile) {
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100 text-center p-6">
-      <h1 className="text-2xl font-bold text-red-600">
-        🚫 This website is only available on desktop dear
-      </h1>
-      <p className="mt-4 text-gray-700">
-        Please open this site on a desktop browser.Changeed
-      </p>
+      <div className="max-w-md">
+        <h1 className="text-2xl font-bold text-red-600 mb-4">
+          🚫 This website is only available on desktop
+        </h1>
+        <p className="text-gray-700">
+          Please open this site on a desktop browser.
+        </p>
+      </div>
     </div>
   );
 }

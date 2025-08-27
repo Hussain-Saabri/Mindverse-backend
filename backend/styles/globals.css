@@ -18,6 +18,11 @@ body {
     overflow-x: hidden;
     margin: 0;
 }
+/* globals.css */
+html, body {
+  min-width: 1024px;  /* force desktop layout */
+  overflow-x: auto;   /* allow scroll on small screen */
+}
 
 /* ================================================== */
 
