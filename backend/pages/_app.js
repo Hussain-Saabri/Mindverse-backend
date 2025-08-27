@@ -29,18 +29,19 @@ export default function App({ Component, pageProps }) {
   if (!hasMounted) return null;
 
   // 🚫 Block Mobile Users
-  if (isMobile) {
-    return (
-      <div className="flex items-center justify-center h-screen bg-gray-100 text-center p-6">
-        <h1 className="text-2xl font-bold text-red-600">
-          🚫 This website is only available on desktop
-        </h1>
-        <p className="mt-4 text-gray-700">
-          Please open this site on a desktop browser.
-        </p>
-      </div>
-    );
-  }
+if (isMobile) {
+  return (
+    <div className="flex items-center justify-center h-screen bg-gray-100 text-center p-6">
+      <h1 className="text-2xl font-bold text-red-600">
+        🚫 This website is only available on desktop
+      </h1>
+      <p className="mt-4 text-gray-700">
+        Please open this site on a desktop browser.
+      </p>
+    </div>
+  );
+}
+
 
   // ✅ Normal Desktop Render
   return (
