@@ -572,11 +572,15 @@ button {
   transition: all 0.3s ease;
   border-radius: 12px;
   cursor: pointer;
+  top: 12px;
+  position: relative;
 }
 
 .asideleft ul li svg {
-  font-size: 30px;
-  margin-bottom: 12px;
+ font-size: 28px;
+  margin-bottom: 6px;
+  color: gold; /* soft gray */
+  transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .asideleft ul li span {
@@ -584,7 +588,15 @@ button {
 }
 
 
-.asideleft ul li:hover,
+.asideleft ul li:hover{
+    
+  background: rgba(255, 255, 255, 0.15);
+  color: #FFD700;
+  font-weight: bold;
+  margin:3px;
+  
+}
+
 .asideleft ul li.navactive {
   background: rgba(255, 255, 255, 0.15);
   color: #FFD700;
