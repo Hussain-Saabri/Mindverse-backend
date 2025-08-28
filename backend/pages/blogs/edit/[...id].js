@@ -35,9 +35,11 @@ export default function EditBlog() {
     }
   }, [id]);
 //if unautheticated push to the login page
+//remove the comment later
   if (status === "unauthenticated") {
-    router.push("./login");
-    return null;
+
+    //router.push("./login");
+   // return null;
   }
 
   //rendering the loader component

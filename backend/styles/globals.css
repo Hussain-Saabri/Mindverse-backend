@@ -833,7 +833,12 @@ button {
     color: #158df7;
     font-weight: 700;
 }
-
+.category_selected{
+    color: blue;
+    text-transform: capitalize;
+    font-weight: 800;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
 
 .blogscategory {
     width: 100%;

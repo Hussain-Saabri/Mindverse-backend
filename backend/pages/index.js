@@ -12,7 +12,8 @@ export default function Home() {
   useEffect(() => {
     if (status === "unauthenticated") {
       console.log("This one runs and it push to the login")
-      router.push("/login");
+      //remove the  comment later
+      // router.push("/login");
     }
   }, [status, router]);
 
@@ -37,7 +38,7 @@ export default function Home() {
     return <div><Loading/></div>; // 
   }
 
-  if (session) {
+  if (session || status === "unauthenticated") {
     return (
       <div>
         <Head>

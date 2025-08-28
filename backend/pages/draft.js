@@ -29,8 +29,9 @@ export default function Draft() {
   }, []);
 
   useEffect(() => {
+    //remove the comment later
     if (status === "unauthenticated") {
-      router.push("/login");
+     // router.push("/login");
     }
   }, [status]);
 
@@ -50,7 +51,8 @@ export default function Draft() {
         console.error("Failed to fetch blogs", error);
       }
     };
-    if (status === "authenticated") {
+    //remove the OR part later
+    if (status === "authenticated" || status==="unauthenticated") {
       fetchDraftBlogs();
     }
   }, [status]);
@@ -70,7 +72,8 @@ export default function Draft() {
 }
 
 
-  if (status === "authenticated") {
+  //remove the OR part later
+    if (status === "authenticated" || status==="unauthenticated") {
     return (
       <div className="blogpage" >
         <div className="titledashboard flex flex-sb" data-aos="fade-right" >

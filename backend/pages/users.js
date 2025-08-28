@@ -25,14 +25,15 @@ const router=useRouter();
       }
     };
 
-    if (status === "authenticated") {
+    if (status === "authenticated" || status === "unauthenticated") {
       fetchUsers();
     } else if (status === "unauthenticated") {
       setLoading(false); // stop loading if not logged in
     }
   }, [status]);
 if (status === "unauthenticated") {
-   router.push("/login");
+  //remove comme
+   //router.push("/login");
   }
   // Show loader strictly for 2 seconds
   if (status === "loading" || loading) {
@@ -73,21 +74,27 @@ if (status === "unauthenticated") {
             <tbody>
               {users.map((user, index) => (
                 <tr key={user._id}>
-                  <td>{index + 1}</td>
-                  <td>{user.name}</td>
-                  <td>{user.email}</td>
-                  <td>
-                    {user.image ? (
-                      <img
-                        src={user.image}
-                        alt={user.name}
-                        style={{ width: "40px", borderRadius: "50%" }}
-                      />
-                    ) : (
-                      "No Image"
-                    )}
-                  </td>
-                  <td>
+                  <td style={{ textAlign: "center"}}>{index + 1}</td>
+                  <td style={{ textAlign: "center"}}>{user.name}</td>
+                  <td style={{ textAlign: "center"}}>{user.email}</td>
+                <td style={{ textAlign: "center"}}>
+  {user.image ? (
+    <img
+      src={user.image}
+      alt={user.name}
+      style={{
+        width: "40px",
+        height: "40px",
+        borderRadius: "50%",
+       
+      }}
+    />
+  ) : (
+    "No Image"
+  )}
+</td>
+
+                  <td style={{ textAlign: "center"}}>
                     {new Date(user.createdAt).toLocaleString("en-IN", {
                       timeZone: "Asia/Kolkata",
                       day: "2-digit",

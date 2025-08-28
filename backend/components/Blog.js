@@ -14,7 +14,7 @@ export default function Blog({
   description: existingDescription,
   status: existingStatus,
   tags: existingTags,
-  blogCateogry: existingBlogCategory,
+  blogcategory: existingBlogCategory,
   _id,
 }) {
   const router = useRouter();
@@ -37,7 +37,7 @@ export default function Blog({
     const newErrors = {};
     //if block for toast error
     if (
-      !title.trim() ||
+      !title?.trim() ||
       !slug.trim() ||
       blogcategory.length === 0 ||
       tags.length === 0 ||
@@ -81,7 +81,7 @@ if (!description?.trim()) newErrors.description = "!Blog Content is required.";
     const data = { title, slug, blogcategory, tags, status, description };
     console.log("Clicked on save blog button");
     const errorsFound = validateForm();
-    if (Object.keys(errorsFound).length > 0) {
+    if (Object.values(errorsFound).length > 0) {
       setErrors(errorsFound);
       return;
     } else {
@@ -97,7 +97,32 @@ if (!description?.trim()) newErrors.description = "!Blog Content is required.";
         console.log("Updating the blog with an id", _id);
         const response = await axios.put("/api/blog", { ...data, _id });
         console.log(response.data);
-        toast.success("🎉 Blog edited successfully!", {
+        if(status==="publish")
+        {
+           toast.success("Blog Edited and Published Successfully!", {
+  style: {
+    background: "linear-gradient(145deg, #34d399, #059669)", // soft green gradient
+    color: "#e6fffa", // very light teal-ish text
+    marginTop:"56px",
+    borderRadius: "16px",
+    padding: "5px 10px",
+    boxShadow: "0 6px 20px rgba(5, 150, 105, 0.5), 0 0 10px rgba(56, 189, 248, 0.3)", // soft glowing shadow
+    fontSize: "18px",
+    letterSpacing: "0.7px",
+    textTransform: "capitalize",
+    fontFamily: "'Poppins', sans-serif",
+    backdropFilter: "blur(8px)", 
+    textWrap:"wrap"
+  },
+  
+  duration: 4000,
+});
+
+
+        }
+         if(status==="pending")
+        {
+             toast.success("🎉 Blog edited and saved as draft successfully!", {
           style: {
             border: "none",
             padding: "16px 20px",
@@ -112,6 +137,10 @@ if (!description?.trim()) newErrors.description = "!Blog Content is required.";
           icon: "📝",
           duration: 4000,
         });
+        }
+       
+        if(status==="pending") router.push("/draft");
+        if(status==="publish") router.push("/blogs");
       } else {
         const response = await axios.post("/api/blog", data);
         console.log("Respose from the server", response);
@@ -174,7 +203,7 @@ if (!description?.trim()) newErrors.description = "!Blog Content is required.";
             value={title}
             onChange={(ev) => setTitle(ev.target.value)}
           />
-          {errors.title && <p className="error mt-1">{errors.title}</p>}
+          {errors.title && !title &&<p className="error mt-1">{errors.title}</p>}
         </div>
         {/*-------------------------------Slug for the blog------------------------------------------------------------*/}
         <div className="w-100 flex flex-col flex-left mb-2" >
@@ -187,7 +216,7 @@ if (!description?.trim()) newErrors.description = "!Blog Content is required.";
             onChange={handleSlugChange}
             className="border px-3 py-2 w-full"
           />
-          {errors.slug && <p className="error mt-1">{errors.slug}</p>}
+          {errors.slug && !slug && <p className="error mt-1">{errors.slug}</p>}
         </div>
         {/*-------------------------------Category dropdown------------------------------------------------------------*/}
         <div className="w-100 flex flex-col flex-left mb-2" >
@@ -211,10 +240,10 @@ if (!description?.trim()) newErrors.description = "!Blog Content is required.";
             <option value="test">Test</option>
           </select>
           <p className="mt-1 flex">
-            Selected: <span></span>
+            Selected: <span className="category_selected">{blogcategory.join(",")}</span>
           </p>
-          {errors.blogcategory && (
-            <p className="error mt-1">{errors.blogcategory}</p>
+          {errors.blogcategory && blogcategory.length ===0 && (
+            <p className="error mt-1">{ errors.blogcategory} </p>
           )}
         </div>
         {/*-------------------------------React markdown---------------------------------------------------------*/}
@@ -234,7 +263,7 @@ if (!description?.trim()) newErrors.description = "!Blog Content is required.";
               </ReactMarkdown>
             )}
           />
-          {errors.description && (
+          {errors.description && !description && (
             <p className="error mt-1">{errors.description}</p>
           )}
         </div>
@@ -260,9 +289,9 @@ if (!description?.trim()) newErrors.description = "!Blog Content is required.";
             <option value="test">Test</option>
           </select>
           <p className="mt-1 flex">
-            Selected: <span></span>
+            Selected: <span className="category_selected">{tags.join(",")}</span>
           </p>
-          {errors.tags && <p className="error mt-1">{errors.tags}</p>}
+          {errors.tags && tags.length===0 && <p className="error mt-1">{errors.tags}</p>}
         </div>
         {/*-------------------------------Updating the status------------------------------------------------------------*/}
         <div className="w-100 flex flex-col flex-left mb-2" >
@@ -278,9 +307,9 @@ if (!description?.trim()) newErrors.description = "!Blog Content is required.";
             <option value="publish">Publish</option>
           </select>
           <p className="mt-1 flex">
-            Selected: <span></span>
+            Selected: <span className="category_selected">{status}</span>
           </p>
-          {errors.status && <p className="error mt-1">{errors.status}</p>}
+          {errors.status && !status && <p className="error mt-1">{errors.status}</p>}
         </div>
         {/*-------------------------------Saving the form button-----------------------------------------------------------*/}
         <div className="w-100 mb-2">

@@ -22,8 +22,9 @@ export default function Addblogs() {
   }, []);
 
   useEffect(() => {
+    //remove the comment later
     if (status === "unauthenticated") {
-      router.push("/login");
+      // router.push("/login");
     }
   }, []);
  if (loading) {

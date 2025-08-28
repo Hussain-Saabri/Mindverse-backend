@@ -11,9 +11,10 @@ export default function Login() {
   const { data: session, status } = useSession();
   const [forceLoading, setForceLoading] = useState(true);
   const router = useRouter();
+  const[guestMode,setGuestMode]=useState(true)
 
   useEffect(() => {
-    if (status === "authenticated") {
+    if (status === "authenticated" ) {
       console.log("Inside the useeffect function and it is authenticated");
       router.push("/");
     }
@@ -43,10 +44,10 @@ return (
     <div className="loginfront flex flex-center flex-col full-w">
       <Image src="/img/coder.png" width={250} height={250} alt="Coder Image" />
    <h1>
-  Welcome Admin of
-  
+  Welcome Admin
+ 
 </h1>
-<Logo/>
+
 
 
 

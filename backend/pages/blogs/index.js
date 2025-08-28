@@ -29,7 +29,8 @@ export default function Blogs() {
 
   useEffect(() => {
     if (status === "unauthenticated") {
-      router.push("/login");
+      //remove the comment later
+      // router.push("/login");
     }
   }, [status]);
 
@@ -54,7 +55,8 @@ export default function Blogs() {
         console.log("Consoling the error", error);
       }
     };
-    if (status === "authenticated") {
+    //remove the or part later 
+    if (status === "authenticated" || status==="unauthenticated") {
       fetchPublishBlogs();
     }
   }, [status]);
@@ -81,8 +83,9 @@ export default function Blogs() {
   if (loading) {
     return <Loading />;
   }
+  //remove the OR part later
 
-  if (status === "authenticated") {
+  if (status === "authenticated" || status === "unauthenticated") {
     return (
       <div className="blogpage">
         <div className="titledashboard flex flex-sb" data-aos="fade-right">
