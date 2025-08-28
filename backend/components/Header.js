@@ -15,7 +15,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
 
 import Logo from "./Logo";
 import Link from "next/link";
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["Profile",  "Dashboard", "Logout"];
 const defaultAvatar = "/img/coder.png";
 
 function Header({ onToggleSidebar }) {
@@ -124,16 +124,29 @@ function Header({ onToggleSidebar }) {
           open={Boolean(anchorElUser)}
           onClose={handleCloseUserMenu}
         >
-          {settings.map((setting) => (
-            <MenuItem
-              key={setting}
-              onClick={
-                setting === "Logout" ? handleLogout : handleCloseUserMenu
-              }
-            >
-              <Typography textAlign="center">{setting}</Typography>
-            </MenuItem>
-          ))}
+         {settings.map((setting) => (
+  <MenuItem
+    key={setting}
+    onClick={
+      setting === "Logout"
+        ? handleLogout
+        : handleCloseUserMenu
+    }
+  >
+    {setting === "Profile" ? (
+      <Link
+        href="/profile"
+        style={{ textDecoration: "none", color: "inherit" }}
+      >
+        <Typography textAlign="center">{setting}</Typography>
+      </Link>
+    ) : (
+      <Typography textAlign="center">{setting}</Typography>
+    )}
+    
+  </MenuItem>
+))}
+
         </Menu>
       </>
     ) : (

@@ -9,8 +9,11 @@ export default function Loading() {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        
+        maxWidth: "1750px",
         marginRight:"150px",
+        position: "relative",
+    maxWidth: "1750px",
+    margin: "auto",
       }}
     >
       <ScaleLoader

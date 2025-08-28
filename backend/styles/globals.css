@@ -575,21 +575,21 @@ button {
 }
 
 .asideleft ul li svg {
-  font-size: 22px;
-  margin-bottom: 6px;
+  font-size: 30px;
+  margin-bottom: 12px;
 }
 
 .asideleft ul li span {
   font-size: 16px;
 }
 
-/* 🟡 Hover + Active common styling */
+
 .asideleft ul li:hover,
 .asideleft ul li.navactive {
   background: rgba(255, 255, 255, 0.15);
   color: #FFD700;
   font-weight: bold;
-  box-shadow: inset 0 0 4px rgba(255,255,255,0.2);
+  box-shadow: inset 0 0 1px rgba(255,255,255,0.2);
 }
 
 
@@ -878,7 +878,6 @@ button {
     margin: auto;
     height: 100%;
     margin-top: 50px;
-   
     padding: 2rem;
 }
 
@@ -1007,6 +1006,7 @@ button {
   background-color: #667eea;
   color: #fff;
 }
+
 
 .blogpagination li.active a {
   background-color: #667eea;
@@ -1656,5 +1656,209 @@ button {
     box-shadow: 0 0 5px #999;
     border-radius: 10px;
 }
+/* PROFILE PAGE GLOBAL CSS */
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to right, #dbeafe, #ede9fe, #fce7f3);
+}
+
+.profile-card {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 350px;
+  transition: transform 0.3s ease;
+}
+
+.profile-card:hover {
+  transform: scale(1.03);
+}
+
+.avatar-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 4px solid #6366f1;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.online {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 15px;
+  height: 15px;
+  background: #22c55e;
+  border: 2px solid #fff;
+  border-radius: 50%;
+}
+
+.profile-card h1 {
+  margin-top: 1rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.profile-card p {
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.btn {
+  padding: 10px 18px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.logout-btn {
+  background: #ef4444;
+  color: white;
+}
+
+.logout-btn:hover {
+  background: #dc2626;
+}
+
+.home-btn {
+  background: #4f46e5;
+  color: white;
+}
+
+.home-btn:hover {
+  background: #4338ca;
+}
+
+.signin-btn {
+  background: #2563eb;
+  color: white;
+  margin-top: 15px;
+}
+
+.signin-btn:hover {
+  background: #1d4ed8;
+}
+
+/* Not signed in state */
+.not-signedin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to right, #f1f5f9, #e2e8f0);
+}
+
+.not-signedin h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #444;
+}
+
+/* Loader */
+.loader-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f9fafb;
+}
+
+.loader {
+  border: 5px solid #e5e7eb;
+  border-top: 5px solid #2563eb;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 
+/* ACCOUNT PAGE */
+.account-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to right, #ede9fe, #dbeafe, #f0fdfa);
+}
+
+.account-card {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  text-align: left;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.account-title {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.account-section {
+  margin-bottom: 1.2rem;
+}
+
+.account-section label {
+  font-weight: 600;
+  color: #444;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.account-section p {
+  color: #555;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.account-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid #6366f1;
+  margin-top: 8px;
+}
+
+.account-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 1.5rem;
+}
+/* for scrollbar issue */
+html {
+  overflow-y: scroll;
+}

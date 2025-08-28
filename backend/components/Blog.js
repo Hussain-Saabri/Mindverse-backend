@@ -122,10 +122,10 @@ if (!description?.trim()) newErrors.description = "!Blog Content is required.";
         }
          if(status==="pending")
         {
-             toast.success("🎉 Blog edited and saved as draft successfully!", {
+             toast.success("Blog edited and saved as draft successfully!", {
           style: {
             border: "none",
-            padding: "16px 20px",
+            padding: "10px 10px",
             background: "linear-gradient(to right, #86efac, #4ade80)",
             color: "#064e3b",
             fontWeight: "bold",
@@ -147,7 +147,7 @@ if (!description?.trim()) newErrors.description = "!Blog Content is required.";
         setLoading(false);
         if (status == "pending") {
           toast.success(`🎉 Blog Saved As Draft`, {
-            icon: "✅",
+            
             style: {
               border: "none",
               padding: "16px 22px",
@@ -165,8 +165,8 @@ if (!description?.trim()) newErrors.description = "!Blog Content is required.";
           router.push("/draft");
         }
         if (status == "publish") {
-          toast.success(`🎉 Blog Published Successfully`, {
-            icon: "✅",
+          toast.success(`Blog Published Successfully`, {
+          
             style: {
               border: "none",
               padding: "16px 22px",
