@@ -1,6 +1,6 @@
 "use client";
 import { useSession, signOut } from "next-auth/react";
-
+import Link from "next/link";
 export default function ProfilePage() {
   const { data: session, status } = useSession();
 
@@ -16,9 +16,9 @@ export default function ProfilePage() {
     return (
       <div className="not-signedin">
         <h2>You are not signed in 🚫</h2>
-        <a href="/api/auth/signin" className="btn signin-btn">
+        <Link href="/api/auth/signin" className="btn signin-btn">
           Sign In with Google
-        </a>
+        </Link>
       </div>
     );
   }
