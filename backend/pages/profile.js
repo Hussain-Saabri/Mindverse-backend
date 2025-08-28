@@ -42,9 +42,9 @@ export default function ProfilePage() {
           >
             Sign Out
           </button>
-          <a href="/" className="btn home-btn">
+          <Link href="/" className="btn home-btn">
             Home
-          </a>
+          </Link>
         </div>
       </div>
     </div>
