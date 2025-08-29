@@ -5,7 +5,7 @@ import NextAuthProvider from "./Provider";
 import { useEffect, useState } from "react";
 import { Toaster } from "react-hot-toast";
 import Aos from "@/components/Aos";
-
+import Head from "next/head";
 export default function App({ Component, pageProps }) {
   const [hasMounted, setHasMounted] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -27,7 +27,7 @@ export default function App({ Component, pageProps }) {
 
   if (!hasMounted) return null;
 
-  // 🚫 Block Mobile Users
+  // Block Mobile Users
   if (isMobile) {
     return (
       <div className="mobile-block">
@@ -42,9 +42,14 @@ export default function App({ Component, pageProps }) {
     );
   }
 
-  // ✅ Normal Desktop Render
+  
   return (
     <NextAuthProvider>
+      <Head>
+          
+          
+          <link rel="icon" href="/favicon.png" />
+        </Head>
       {/* Toast notifications */}
       <Toaster
         position="top-right"

@@ -4,6 +4,7 @@ import axios from "axios";
 import Loading from "@/components/Loading";
 import { useRouter } from "next/router";
 import { user } from "@heroui/react";
+import Head from "next/head";
 export default function UsersTable() {
   const { status } = useSession();
   const [users, setUsers] = useState([]);
@@ -45,6 +46,12 @@ if (status === "unauthenticated") {
   }
 
   return (
+    <>
+    <Head>
+        <title>Admin Panel-All Users</title>
+        
+      </Head>
+    
     <div className="blogpage">
       <div className="titledashboard flex flex-sb" data-aos="fade-right">
         <div>
@@ -128,5 +135,6 @@ if (status === "unauthenticated") {
         )}
       </div>
     </div>
+    </>
   );
 }

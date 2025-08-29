@@ -2,7 +2,7 @@
 
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-
+import Head from "next/head";
 import { useState, useEffect } from "react";
 import { MdOutlineAddPhotoAlternate } from "react-icons/md";
 import Blog from "@/components/Blog";
@@ -34,6 +34,10 @@ export default function Addblogs() {
  }
   return (
     <>
+    <Head>
+        <title>Admin Panel - Add Blogs</title>
+        
+      </Head>
       <div className="addblogspage">
         <div className="titledashboard flex flex-sb">
           <div data-aos="fade-right">

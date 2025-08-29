@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-
+import Head from "next/head";
 import Loading from "@/components/Loading";
 import Link from "next/link";
 import { FaEdit } from "react-icons/fa";
@@ -75,6 +75,12 @@ export default function Draft() {
   //remove the OR part later
     if (status === "authenticated" || status==="unauthenticated") {
     return (
+      <>
+      <Head>
+        <title>Admin Panel - Draft Blogs</title>
+        
+      </Head>
+      
       <div className="blogpage" >
         <div className="titledashboard flex flex-sb" data-aos="fade-right" >
           <div>
@@ -171,6 +177,7 @@ export default function Draft() {
 
         
       </div>
+      </>
     );
   }
 }

@@ -9,7 +9,7 @@ import { MdDelete, MdDrafts } from "react-icons/md";
 import axios from "axios";
 import Loading from "@/components/Loading";
 import ReactPaginate from "react-paginate";
-
+import Head from "next/head";
 export default function Blogs() {
   const [sizeOfBlogs, setSizeOfBlogs] = useState(0);
   const { data: session, status } = useSession();
@@ -87,6 +87,11 @@ export default function Blogs() {
 
   if (status === "authenticated" || status === "unauthenticated") {
     return (
+      <>
+      <Head>
+    <title>Admin Panel - Published Blogs</title>
+    
+  </Head>
       <div className="blogpage">
         <div className="titledashboard flex flex-sb" data-aos="fade-right">
           <div>
@@ -192,6 +197,7 @@ export default function Blogs() {
           )}
         </div>
       </div>
+      </>
     );
   }
 }
