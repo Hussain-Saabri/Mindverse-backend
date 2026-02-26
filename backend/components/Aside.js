@@ -21,7 +21,7 @@ export default function Aside() {
   };
 
   useEffect(() => {
-    // Update active link state when the page is reloaded
+
     setActiveLink(router.pathname);
   }, [router.pathname]);
 
