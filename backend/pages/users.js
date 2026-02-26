@@ -17,7 +17,7 @@ const router=useRouter();
         const res = await axios.get("/api/getuser");
         setUsers(res.data.users || []);
       } catch (error) {
-        console.error("Failed to fetch users", error);
+        // Handle error silently or with dedicated monitoring in production
       } finally {
         // ensure at least 2s loading
         const elapsed = Date.now() - startTime;
@@ -33,8 +33,7 @@ const router=useRouter();
     }
   }, [status]);
 if (status === "unauthenticated") {
-  //remove comme
-   //router.push("/login");
+    // router.push("/login");
   }
   // Show loader strictly for 2 seconds
   if (status === "loading" || loading) {

@@ -14,29 +14,25 @@ const handler = NextAuth({
 
   callbacks: {
     async signIn({ user, account }) {
-   console.log("Consoling the user from route.js:", user);
-  console.log("Consoling the Account:", account);
-
       if (account.provider === "google") {
-        const { name, email,image } = user;
+        const { name, email, image } = user;
         try {
           const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
-         const res= await fetch(`${baseUrl}/api/user`, 
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ name, email,image }),
-          });
-          if(res.ok)
-          {
+          const res = await fetch(`${baseUrl}/api/user`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ name, email, image }),
+            });
+          if (res.ok) {
             return user;
           }
-        } 
-        
+        }
+
         catch (error) {
-          console.error("Error saving user to DB:", error);
+          // Handle error silently or with dedicated monitoring in production
           return false; // Stop sign-in if DB save fails
         }
       }

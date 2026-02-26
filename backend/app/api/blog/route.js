@@ -9,8 +9,7 @@ export async function POST(request) {
   try {
     const { title, slug, blogcategory, tags, status, description } = await request.json();
     await connectMongoDB();
-    const res=await Blog.create({ title, slug, blogcategory, tags, status, description,viewsCount: 0 });
-    console.log("Result",res)
+    const res = await Blog.create({ title, slug, blogcategory, tags, status, description, viewsCount: 0 });
     return NextResponse.json({ message: "Blog has been added" }, { status: 201 });
   } catch (error) {
     return NextResponse.json({ message: "Error adding blog", error }, { status: 500 });
@@ -35,24 +34,23 @@ export async function GET(request) {
     const blogs = await Blog.find().sort({ createdAt: -1 });;
     return NextResponse.json(blogs);
   } catch (error) {
-    console.log("consling the error in server",error);
+    // Handle error silently or with dedicated monitoring in production
     return NextResponse.json({ message: "Error fetching blogs", error }, { status: 500 });
   }
 }
 
 // PUT: Update a blog
 export async function PUT(req) {
-  console.log("Inside the put function");
-    const body = await req.json(); // 
-    const { _id, title, slug, blogcategory, tags, status, description, audioLink } = body;
-    //connecting to the mongodb
-    await connectMongoDB();
-    //updating the blog by id 
-    await Blog.updateOne({ _id }, {
-            title, slug, description, blogcategory, tags, status, audioLink
-        });
-      return NextResponse.json({ message: "Blog updated successfully" });
-  
+  const body = await req.json(); // 
+  const { _id, title, slug, blogcategory, tags, status, description, audioLink } = body;
+  //connecting to the mongodb
+  await connectMongoDB();
+  //updating the blog by id 
+  await Blog.updateOne({ _id }, {
+    title, slug, description, blogcategory, tags, status, audioLink
+  });
+  return NextResponse.json({ message: "Blog updated successfully" });
+
 }
 
 // Delete:Delete an blog

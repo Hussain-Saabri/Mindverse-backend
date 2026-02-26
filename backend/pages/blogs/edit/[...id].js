@@ -1,6 +1,6 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { useState ,useEffect} from "react";
+import { useState, useEffect } from "react";
 import Loading from "@/components/Loading";
 import "aos/dist/aos.css";
 import Blog from "@/components/Blog";
@@ -18,15 +18,13 @@ export default function EditBlog() {
   }, []);
 
   const { id } = router.query;
-  console.log("Printing the id", router.query);
   useEffect(() => {
     const fetchBlog = async () => {
       try {
         const response = await axios.get("/api/blog?id=" + id);
         setBlogInfo(response.data);
-        console.log("Printing the output from the api", response.data);
       } catch (error) {
-        console.error("Error fetching blog:", error);
+        // Handle error silently or with dedicated monitoring in production
       }
     };
 
@@ -34,12 +32,10 @@ export default function EditBlog() {
       fetchBlog();
     }
   }, [id]);
-//if unautheticated push to the login page
-//remove the comment later
+  //if unautheticated push to the login page
   if (status === "unauthenticated") {
-
     //router.push("./login");
-   // return null;
+    // return null;
   }
 
   //rendering the loader component

@@ -17,7 +17,7 @@ export default function Draft() {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(0);
   const [sizeOfBlogs, setSizeOfBlogs] = useState(0);
-  const blogsPerPage =4 ;
+  const blogsPerPage = 4;
 
   const router = useRouter();
 
@@ -31,11 +31,11 @@ export default function Draft() {
   useEffect(() => {
     //remove the comment later
     if (status === "unauthenticated") {
-     // router.push("/login");
+      // router.push("/login");
     }
   }, [status]);
 
-  
+
 
   useEffect(() => {
     const fetchDraftBlogs = async () => {
@@ -44,15 +44,14 @@ export default function Draft() {
         const filteredDrafts = res.data.filter(
           (blog) => blog.status === "pending"
         );
-        console.log("Getting all blogs",filteredDrafts);
         setSizeOfBlogs(filteredDrafts.length);
         setDraftBlogs(filteredDrafts);
       } catch (error) {
-        console.error("Failed to fetch blogs", error);
+        // Handle error silently or with dedicated monitoring in production
       }
     };
     //remove the OR part later
-    if (status === "authenticated" || status==="unauthenticated") {
+    if (status === "authenticated" || status === "unauthenticated") {
       fetchDraftBlogs();
     }
   }, [status]);
@@ -60,123 +59,123 @@ export default function Draft() {
   const pageCount = Math.ceil(draftBlogs.length / blogsPerPage);
   const offset = currentPage * blogsPerPage;
   const currentBlogs = draftBlogs.slice(offset, offset + blogsPerPage);
-  
+
   const handlePageClick = ({ selected }) => {
     setCurrentPage(selected);
   };
 
- if (loading) {
-  return (
-    <Loading/>
-  );
-}
+  if (loading) {
+    return (
+      <Loading />
+    );
+  }
 
 
   //remove the OR part later
-    if (status === "authenticated" || status==="unauthenticated") {
+  if (status === "authenticated" || status === "unauthenticated") {
     return (
       <>
-      <Head>
-        <title>Admin Panel - Draft Blogs</title>
-        
-      </Head>
-      
-      <div className="blogpage" >
-        <div className="titledashboard flex flex-sb" data-aos="fade-right" >
-          <div>
-            <h2>
-              Draft(Pending) <span>Blogs({sizeOfBlogs})</span>
-            </h2>
-            <h3>ADMIN PANEL</h3>
-          </div>
-          <div className="breadcrumb">
-            <MdDrafts /> <span>/</span>
-            <span>Draft</span>
-          </div>
-        </div>
+        <Head>
+          <title>Admin Panel - Draft Blogs</title>
 
-        
-        <div className="blogstable ">
-          {currentBlogs.length > 0 ? (
-            <>
-            <table data-aos="fade-up">
-              <thead>
-                <tr >
-                  <th>Sr.No</th>
-                  <th>Date</th>
-                  <th>Title</th>
-                  <th>Slug</th>
-                  <th >Edit / Delete</th>
-                </tr>
-              </thead>
-              <tbody >
-                {currentBlogs.map((blog, index) => (
-                  <tr key={blog._id} >
-                    <td>{offset + index + 1}</td>
-                    <td>{new Date(blog.updatedAt).toLocaleString('en-IN', {
-    timeZone: 'Asia/Kolkata',
-    day: '2-digit',
-    month: 'long',
-    year: '2-digit',
-    hour: 'numeric',
-    minute: '2-digit',
-    hour12: true,
-  })}</td>
-                    <td>{blog.title}</td>
-                    <td>{blog.slug}</td>
-                    <td>
-                      <div className="flex gap-2 flex-center">
-                        <Link href={"/blogs/edit/" + blog._id}>
-                          <button className="edit-btn" title="Edit">
-                            <FaEdit /> Edit
-                          </button>
-                        </Link>
+        </Head>
 
-                        <Link href={"/blogs/delete/" + blog._id}>
-                          <button className="delete-btn" title="Delete">
-                            <MdDelete /> Delete
-                          </button>
-                        </Link>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-
-
-           <ReactPaginate
-            previousLabel={"Previous"}
-            nextLabel={"Next"}
-            pageCount={pageCount}
-            onPageChange={handlePageClick}
-            containerClassName={"blogpagination"}
-            activeClassName={"active"}
-            disabledClassName={"disabled"}
-          />
-            
-            
-            </>
-          ) : (
-            <div
-              style={{
-                backgroundColor: "#ffcccc",
-                color: "#990000",
-                padding: "1rem",
-                borderRadius: "8px",
-                textAlign: "center",
-                marginTop: "1rem",
-                fontWeight: "bold",
-                fontSize: "1.2rem",
-              }} data-aos="fade-right"
-            >
-              No Pending Blogs Found
+        <div className="blogpage" >
+          <div className="titledashboard flex flex-sb" data-aos="fade-right" >
+            <div>
+              <h2>
+                Draft(Pending) <span>Blogs({sizeOfBlogs})</span>
+              </h2>
+              <h3>ADMIN PANEL</h3>
             </div>
-          )}
-        </div>
+            <div className="breadcrumb">
+              <MdDrafts /> <span>/</span>
+              <span>Draft</span>
+            </div>
+          </div>
 
-        
-      </div>
+
+          <div className="blogstable ">
+            {currentBlogs.length > 0 ? (
+              <>
+                <table data-aos="fade-up">
+                  <thead>
+                    <tr >
+                      <th>Sr.No</th>
+                      <th>Date</th>
+                      <th>Title</th>
+                      <th>Slug</th>
+                      <th >Edit / Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody >
+                    {currentBlogs.map((blog, index) => (
+                      <tr key={blog._id} >
+                        <td>{offset + index + 1}</td>
+                        <td>{new Date(blog.updatedAt).toLocaleString('en-IN', {
+                          timeZone: 'Asia/Kolkata',
+                          day: '2-digit',
+                          month: 'long',
+                          year: '2-digit',
+                          hour: 'numeric',
+                          minute: '2-digit',
+                          hour12: true,
+                        })}</td>
+                        <td>{blog.title}</td>
+                        <td>{blog.slug}</td>
+                        <td>
+                          <div className="flex gap-2 flex-center">
+                            <Link href={"/blogs/edit/" + blog._id}>
+                              <button className="edit-btn" title="Edit">
+                                <FaEdit /> Edit
+                              </button>
+                            </Link>
+
+                            <Link href={"/blogs/delete/" + blog._id}>
+                              <button className="delete-btn" title="Delete">
+                                <MdDelete /> Delete
+                              </button>
+                            </Link>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+
+
+                <ReactPaginate
+                  previousLabel={"Previous"}
+                  nextLabel={"Next"}
+                  pageCount={pageCount}
+                  onPageChange={handlePageClick}
+                  containerClassName={"blogpagination"}
+                  activeClassName={"active"}
+                  disabledClassName={"disabled"}
+                />
+
+
+              </>
+            ) : (
+              <div
+                style={{
+                  backgroundColor: "#ffcccc",
+                  color: "#990000",
+                  padding: "1rem",
+                  borderRadius: "8px",
+                  textAlign: "center",
+                  marginTop: "1rem",
+                  fontWeight: "bold",
+                  fontSize: "1.2rem",
+                }} data-aos="fade-right"
+              >
+                No Pending Blogs Found
+              </div>
+            )}
+          </div>
+
+
+        </div>
       </>
     );
   }

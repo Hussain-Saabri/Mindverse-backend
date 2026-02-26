@@ -13,22 +13,21 @@ export default function DeleteProduct() {
 
   const handleDelete = async () => {
     try {
-      console.log("Inside the delete function");
       await axios.delete('/api/blog?id=' + id);
       toast.success("Blog deleted successfully!", {
-  style: {
-    border: '1px solid #4BB543',
-    padding: '16px',
-    color: '#1b3155',
-    background: '#f0fdf4',
-    fontWeight: 'bold',
-    fontSize: '14px',
-  },
-  iconTheme: {
-    primary: '#4BB543',
-    secondary: '#f0fdf4',
-  },
-});
+        style: {
+          border: '1px solid #4BB543',
+          padding: '16px',
+          color: '#1b3155',
+          background: '#f0fdf4',
+          fontWeight: 'bold',
+          fontSize: '14px',
+        },
+        iconTheme: {
+          primary: '#4BB543',
+          secondary: '#f0fdf4',
+        },
+      });
 
       router.back();
     } catch (error) {

@@ -27,13 +27,10 @@ export default function Blog({
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [showError, setShowError] = useState(false);
-  console.log("existingSlug", existingSlug);
-  console.log("existingblog", existingBlogCategory);
   {
     /*-------------------------------This function us used to validate the form ------------------------------------------------------------*/
   }
   const validateForm = () => {
-    console.log("Inside the validateform function");
     const newErrors = {};
     //if block for toast error
     if (
@@ -55,11 +52,11 @@ export default function Blog({
       });
 
     if (!title?.trim()) newErrors.title = "!Title is required.";
-if (!slug?.trim()) newErrors.slug = "!Slug is required.";
-if (blogcategory.length === 0) newErrors.blogcategory = "!Category is required.";
-if (tags.length === 0) newErrors.tags = "!At least one tag is required.";
-if (!status?.trim()) newErrors.status = "!Status is required.";
-if (!description?.trim()) newErrors.description = "!Blog Content is required.";
+    if (!slug?.trim()) newErrors.slug = "!Slug is required.";
+    if (blogcategory.length === 0) newErrors.blogcategory = "!Category is required.";
+    if (tags.length === 0) newErrors.tags = "!At least one tag is required.";
+    if (!status?.trim()) newErrors.status = "!Status is required.";
+    if (!description?.trim()) newErrors.description = "!Blog Content is required.";
 
     return newErrors;
   };
@@ -79,7 +76,6 @@ if (!description?.trim()) newErrors.description = "!Blog Content is required.";
     ev.preventDefault();
 
     const data = { title, slug, blogcategory, tags, status, description };
-    console.log("Clicked on save blog button");
     const errorsFound = validateForm();
     if (Object.values(errorsFound).length > 0) {
       setErrors(errorsFound);
@@ -88,66 +84,57 @@ if (!description?.trim()) newErrors.description = "!Blog Content is required.";
       setErrors({});
     }
     setLoading(true);
-    console.log("Form Data:", data);
-
-    //call the api now
     try {
       if (_id) {
-        //log the put request
-        console.log("Updating the blog with an id", _id);
         const response = await axios.put("/api/blog", { ...data, _id });
-        console.log(response.data);
-        if(status==="publish")
-        {
-           toast.success("Blog Edited and Published Successfully!", {
-  style: {
-    background: "linear-gradient(145deg, #34d399, #059669)", // soft green gradient
-    color: "#e6fffa", // very light teal-ish text
-    marginTop:"56px",
-    borderRadius: "16px",
-    padding: "5px 10px",
-    boxShadow: "0 6px 20px rgba(5, 150, 105, 0.5), 0 0 10px rgba(56, 189, 248, 0.3)", // soft glowing shadow
-    fontSize: "18px",
-    letterSpacing: "0.7px",
-    textTransform: "capitalize",
-    fontFamily: "'Poppins', sans-serif",
-    backdropFilter: "blur(8px)", 
-    textWrap:"wrap"
-  },
-  
-  duration: 4000,
-});
+        if (status === "publish") {
+          toast.success("Blog Edited and Published Successfully!", {
+            style: {
+              background: "linear-gradient(145deg, #34d399, #059669)", // soft green gradient
+              color: "#e6fffa", // very light teal-ish text
+              marginTop: "56px",
+              borderRadius: "16px",
+              padding: "5px 10px",
+              boxShadow: "0 6px 20px rgba(5, 150, 105, 0.5), 0 0 10px rgba(56, 189, 248, 0.3)", // soft glowing shadow
+              fontSize: "18px",
+              letterSpacing: "0.7px",
+              textTransform: "capitalize",
+              fontFamily: "'Poppins', sans-serif",
+              backdropFilter: "blur(8px)",
+              textWrap: "wrap"
+            },
+
+            duration: 4000,
+          });
 
 
         }
-         if(status==="pending")
-        {
-             toast.success("Blog edited and saved as draft successfully!", {
-          style: {
-            border: "none",
-            padding: "10px 10px",
-            background: "linear-gradient(to right, #86efac, #4ade80)",
-            color: "#064e3b",
-            fontWeight: "bold",
-            fontWeight: "bold",
-            fontSize: "15px",
-            borderRadius: "12px",
-            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
-          },
-          icon: "📝",
-          duration: 4000,
-        });
+        if (status === "pending") {
+          toast.success("Blog edited and saved as draft successfully!", {
+            style: {
+              border: "none",
+              padding: "10px 10px",
+              background: "linear-gradient(to right, #86efac, #4ade80)",
+              color: "#064e3b",
+              fontWeight: "bold",
+              fontWeight: "bold",
+              fontSize: "15px",
+              borderRadius: "12px",
+              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
+            },
+            icon: "📝",
+            duration: 4000,
+          });
         }
-       
-        if(status==="pending") router.push("/draft");
-        if(status==="publish") router.push("/blogs");
+
+        if (status === "pending") router.push("/draft");
+        if (status === "publish") router.push("/blogs");
       } else {
         const response = await axios.post("/api/blog", data);
-        console.log("Respose from the server", response);
         setLoading(false);
         if (status == "pending") {
           toast.success(`🎉 Blog Saved As Draft`, {
-            
+
             style: {
               border: "none",
               padding: "16px 22px",
@@ -166,7 +153,7 @@ if (!description?.trim()) newErrors.description = "!Blog Content is required.";
         }
         if (status == "publish") {
           toast.success(`Blog Published Successfully`, {
-          
+
             style: {
               border: "none",
               padding: "16px 22px",
@@ -186,7 +173,7 @@ if (!description?.trim()) newErrors.description = "!Blog Content is required.";
         }
       }
     } catch (error) {
-      console.error("Error submitting blog:", error);
+      // Handle error silently or with dedicated monitoring in production
       alert("Something went wrong. Please try again.");
     }
   }
@@ -203,7 +190,7 @@ if (!description?.trim()) newErrors.description = "!Blog Content is required.";
             value={title}
             onChange={(ev) => setTitle(ev.target.value)}
           />
-          {errors.title && !title &&<p className="error mt-1">{errors.title}</p>}
+          {errors.title && !title && <p className="error mt-1">{errors.title}</p>}
         </div>
         {/*-------------------------------Slug for the blog------------------------------------------------------------*/}
         <div className="w-100 flex flex-col flex-left mb-2" >
@@ -242,8 +229,8 @@ if (!description?.trim()) newErrors.description = "!Blog Content is required.";
           <p className="mt-1 flex">
             Selected: <span className="category_selected">{blogcategory.join(",")}</span>
           </p>
-          {errors.blogcategory && blogcategory.length ===0 && (
-            <p className="error mt-1">{ errors.blogcategory} </p>
+          {errors.blogcategory && blogcategory.length === 0 && (
+            <p className="error mt-1">{errors.blogcategory} </p>
           )}
         </div>
         {/*-------------------------------React markdown---------------------------------------------------------*/}
@@ -291,7 +278,7 @@ if (!description?.trim()) newErrors.description = "!Blog Content is required.";
           <p className="mt-1 flex">
             Selected: <span className="category_selected">{tags.join(",")}</span>
           </p>
-          {errors.tags && tags.length===0 && <p className="error mt-1">{errors.tags}</p>}
+          {errors.tags && tags.length === 0 && <p className="error mt-1">{errors.tags}</p>}
         </div>
         {/*-------------------------------Updating the status------------------------------------------------------------*/}
         <div className="w-100 flex flex-col flex-left mb-2" >
