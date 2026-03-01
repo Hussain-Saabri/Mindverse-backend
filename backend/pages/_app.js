@@ -42,14 +42,14 @@ export default function App({ Component, pageProps }) {
     );
   }
 
-  
+
   return (
     <NextAuthProvider>
       <Head>
-          
-          
-          <link rel="icon" href="/favicon.png" />
-        </Head>
+
+
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+      </Head>
       {/* Toast notifications */}
       <Toaster
         position="top-right"
