@@ -40,7 +40,7 @@ export default function Addblogs() {
       </Head>
       <div className="addblogspage">
         <div className="titledashboard flex flex-sb">
-          <div data-aos="fade-right">
+          <div data-aos="fade-right" style={{ marginTop: "-4rem" }}>
             <h2>
               ADD <span>BLOGS</span>
             </h2>

@@ -100,7 +100,7 @@ export default function Blogs() {
             </div>
           </div>
           {/*Search Blogs */}
-          <div className="flex gap-2 mb-1" data-aos="fade-right">
+          <div className="flex gap-2 mb-1 search_blogs" data-aos="fade-right">
             <h2>Search Blogs: </h2>
             <input
               type="text"
@@ -113,52 +113,54 @@ export default function Blogs() {
           <div className="blogstable">
             {currentBlogs.length > 0 ? (
               <>
-                <table data-aos="fade-right">
-                  <thead>
-                    <tr>
-                      <th>Sr.No</th>
-                      <th>Date</th>
-                      <th>Title</th>
-                      <th>Slug</th>
-                      <th>Edit / Delete</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {currentBlogs.map((blog, index) => (
-                      <tr key={blog._id}>
-                        <td>{offset + index + 1}</td>
-                        <td>
-                          {new Date(blog.updatedAt).toLocaleString("en-IN", {
-                            timeZone: "Asia/Kolkata",
-                            day: "2-digit",
-                            month: "long",
-                            year: "2-digit",
-                            hour: "numeric",
-                            minute: "2-digit",
-                            hour12: true,
-                          })}
-                        </td>
-                        <td>{blog.title}</td>
-                        <td>{blog.slug}</td>
-                        <td>
-                          <div className="flex gap-2 flex-center">
-                            <Link href={"/blogs/edit/" + blog._id}>
-                              <button className="edit-btn" title="Edit">
-                                <FaEdit /> Edit
-                              </button>
-                            </Link>
-
-                            <Link href={"/blogs/delete/" + blog._id}>
-                              <button className="delete-btn" title="Delete">
-                                <MdDelete /> Delete
-                              </button>
-                            </Link>
-                          </div>
-                        </td>
+                <div className="table-container">
+                  <table data-aos="fade-right">
+                    <thead>
+                      <tr>
+                        <th>Sr.No</th>
+                        <th>Date</th>
+                        <th>Title</th>
+                        <th>Slug</th>
+                        <th>Edit / Delete</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {currentBlogs.map((blog, index) => (
+                        <tr key={blog._id}>
+                          <td>{offset + index + 1}</td>
+                          <td>
+                            {new Date(blog.updatedAt).toLocaleString("en-IN", {
+                              timeZone: "Asia/Kolkata",
+                              day: "2-digit",
+                              month: "long",
+                              year: "2-digit",
+                              hour: "numeric",
+                              minute: "2-digit",
+                              hour12: true,
+                            })}
+                          </td>
+                          <td>{blog.title}</td>
+                          <td>{blog.slug}</td>
+                          <td>
+                            <div className="flex gap-2 flex-center">
+                              <Link href={"/blogs/edit/" + blog._id}>
+                                <button className="edit-btn" title="Edit">
+                                  <FaEdit /> Edit
+                                </button>
+                              </Link>
+
+                              <Link href={"/blogs/delete/" + blog._id}>
+                                <button className="delete-btn" title="Delete">
+                                  <MdDelete /> Delete
+                                </button>
+                              </Link>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
 
                 {searchQuery.trim() === "" && (
                   <ReactPaginate

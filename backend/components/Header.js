@@ -46,15 +46,30 @@ function Header({ onToggleSidebar }) {
         borderBottom: "2px solid rgba(95,34,219,0.15)",
         boxShadow: "0 8px 25px rgba(95,34,219,0.2)",
         zIndex: 2000,
-        height: "70px",
-        display: "flex",
-        justifyContent: "center",
       }}
     >
-      <Container maxWidth="xl">
-        <Toolbar disableGutters sx={{ position: "relative" }}>
+      <Container maxWidth="xl" disableGutters>
+        <Toolbar
+          disableGutters
+          sx={{
+            position: "relative",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            px: { xs: 1.5, sm: 2.5 },
+            minHeight: { xs: 64, sm: 70 },
+            gap: { xs: 1, sm: 2 },
+          }}
+        >
           {/* Left Side → Hamburger */}
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 1,
+              flexShrink: 0,
+            }}
+          >
             <IconButton
               onClick={handleToggle}
               sx={{
@@ -78,18 +93,35 @@ function Header({ onToggleSidebar }) {
           {/* Center → Logo */}
           <Box
             sx={{
-              position: "absolute",
-              left: "50%",
-              transform: "translateX(-50%)",
+              flexGrow: 1,
+              display: "flex",
+              justifyContent: { xs: "center", sm: "center" },
+              pointerEvents: "none",
+              px: { xs: 1, sm: 0 },
             }}
           >
-            <Link href="/">
-              <Logo />
-            </Link>
+            <Box
+              sx={{
+                pointerEvents: "auto",
+                maxWidth: { xs: 120, sm: 160 },
+              }}
+            >
+              <Link href="/">
+                <Logo />
+              </Link>
+            </Box>
           </Box>
 
           {/* Right Side → Login / Avatar */}
-          <Box sx={{ display: "flex", alignItems: "center", gap: 2, marginLeft: "auto", pr: 2 }}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: { xs: 1.2, sm: 2 },
+              flexShrink: 0,
+              pr: { xs: 1.5, sm: 2 },
+            }}
+          >
             {isLoggedIn ? (
               <>
                 <Tooltip title="Open settings">
@@ -154,12 +186,13 @@ function Header({ onToggleSidebar }) {
                 sx={{
                   textTransform: "none",
                   borderRadius: "12px",
-                  px: 3,
-                  py: 1.2,
-                  fontSize: "0.95rem",
+                  px: { xs: 1.8, sm: 3 },
+                  py: { xs: 0.8, sm: 1.2 },
+                  fontSize: { xs: "0.78rem", sm: "0.95rem" },
                   fontWeight: 600,
                   background: "linear-gradient(90deg,#5f22db,#9b64e3)",
                   boxShadow: "0 4px 15px rgba(95,34,219,0.35)",
+                  whiteSpace: "nowrap",
                   "&:hover": {
                     background: "linear-gradient(90deg,#4c1dbb,#7a3edb)",
                     transform: "translateY(-2px)",

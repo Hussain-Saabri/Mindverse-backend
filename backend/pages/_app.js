@@ -28,6 +28,7 @@ export default function App({ Component, pageProps }) {
   if (!hasMounted) return null;
 
   // Block Mobile Users
+  /* */
   if (isMobile) {
     return (
       <div className="mobile-block">
